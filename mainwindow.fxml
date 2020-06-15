@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="mainBorderPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.malikadrian.todolist.Controller">
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="File">
+                    <items>
+                        <MenuItem onAction="#showNewItemDialog" text="New... " />
+                        <SeparatorMenuItem />
+                        <MenuItem onAction="#handleExit" text="Exit" />
+                    </items>
+                </Menu>
+            </MenuBar>
+            <ToolBar>
+                <HBox>
+                    <Button onAction="#showNewItemDialog">
+                        <tooltip>
+                            <Tooltip text="Add a New Todo Item" />
+                        </tooltip>
+                        <graphic>
+                            <ImageView>
+                                <Image url="@/toolbarButtonGraphics/general/New24.gif" />
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <ToggleButton fx:id="filterToggleButton" onAction="#handleFilterToggleButton" text="Today's Item">
+                        <tooltip>
+                            <Tooltip text="Show Today's item only" />
+                        </tooltip>
+                    </ToggleButton>
+                    <Button onAction="#handleDoneTask">
+                        <tooltip>
+                            <Tooltip text="Complete task" />
+                        </tooltip>
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../../Data/Preferences24.gif" />
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                        <ToggleButton fx:id="sortPriorityButton" onAction="#handleSortPriorityButton" text="Sort">
+                        <tooltip>
+                            <Tooltip text="Sorty by Priority" />
+                        </tooltip>
+                        </ToggleButton>
+                    <Label text=" Today: " />
+                    <Label fx:id="days" text="0" />
+                    <Label text=" In this month: " />
+                    <Label fx:id="month" text="0" />
+                    <Label text=" All tasks: " />
+                    <Label fx:id="all" text="0" />
+                </HBox>
+            <RadioButton fx:id="notificationsButton" mnemonicParsing="false" onAction="#handleNotifications" text="Notifications" />
+            </ToolBar>
+        </VBox>
+
+    </top>
+    <left>
+        <ListView fx:id="todoListView" onKeyPressed="#handleKeyPressed"> <!--onMouseClicked="#handleClicListView"-->
+
+        </ListView>
+    </left>
+    <center>
+        <VBox style="-fx-background-color: white">
+            <TextArea fx:id="itemDetailsTextArea" wrapText="true" VBox.vgrow="ALWAYS" />
+            <HBox>
+                <Label style="-fx-background-color: white" text="Due: ">
+                    <font>
+                        <Font name="Times New Roman bold" size="20" />
+                    </font>
+                </Label>
+                <Label fx:id="deadlineLabel" style="-fx-background-color: white">
+                    <font>
+                        <Font name="Times New Roman bold" size="20" />
+                    </font>
+                </Label>
+                <Label fx:id="time">
+
+                </Label>
+            </HBox>
+        </VBox>
+
+    </center>
+</BorderPane>
